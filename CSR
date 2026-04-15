@@ -224,6 +224,12 @@
                 <td style="width: 30%; border: 1px solid black;">Sample Quantity Needed (Kgs)</td>
                 <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Sample_Quantity_Needed_Kgs__c !=null, leads.Sample_Quantity_Needed_Kgs__c, '')}" /></td>
             </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesSampleRetention, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoSampleRetention, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Sample Retention (1 month, 3 months, 6 months, 1 year) </td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Sample_Retention__c !=null, leads.Sample_Retention__c, '')}" /></td>
+            </tr>
         </table>
     </div>
 
