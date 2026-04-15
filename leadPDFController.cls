@@ -33,7 +33,7 @@ public class leadPDFController {
     public boolean isYesSampleQuantityNeeded {get; set;}
     public boolean isNoSampleCollectionWeight {get; set;}
     public boolean isYesSampleCollectionWeight {get; set;}
-    public boolean isNSampleRetention {get; set;}
+    public boolean isNoSampleRetention {get; set;}
     public boolean isYesSampleRetention {get; set;}
     
     
