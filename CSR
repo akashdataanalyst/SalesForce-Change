@@ -1,1 +1,273 @@
+<apex:page StandardController="Lead__c" extensions="leadPDFController" renderAs="pdf" showHeader="false" sidebar="false">
+    <apex:param name="id" value="{!leads.Id}" assignTo="{!leads.Id}" />
+    <table>
+        <div>
+            <tr>
+                <td colspan="2" style="width:70%;font-size:18px; font-weight:bold;" >
+                    <strong><apex:outputText value="CALCO POLY TECHNIK PVT. LTD." /></strong>
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="width:70%;font-size:10px;">
+                    <Strong>Registered Address: </Strong>
+                    <apex:outputText value="B201, Saraswati Vihar, Delhi 110034" />
+                    <br/><Strong>MegaFACTORY1: </Strong><apex:outputText value="Plot No 78, Phase 4, Sector 57, HSIIDC, IE Kundli Distt Sonepat, Haryana 131028" />
+                    <br/><Strong>MegaFACTORY2: </Strong><apex:outputText value="Khasra No 22/24/2, 25,4,2, Village Livaspur, Tehsil Rai, Dist Sonepat, Haryana 131021"/>
+                    <br/><Strong>IEC : </Strong><apex:outputText value="0511085427 " />
+                    <Strong>GSTIN : </Strong><apex:outputText value="06AADCC8615R1Z5" />
+                </td>
+                <td colspan="1" style="width:10%;" ></td>
+                <td colspan="1"> 
+                    <apex:image url="{!$Resource.LOGO}" alt="Company Logo"  width="120"  />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <apex:outputText value="Pre-Contract Review Checklist" />
+                </td>
+                <td colspan="1" style="width:10%;" ></td>
+                <td colspan="1" style="font-size:10px;text-align: right;">
+                    <Strong>Doc No.: </Strong>F-MKTG-02/00
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="1" style="width:10%;" ></td>
+                <td colspan="1" style="font-size:10px;text-align: right;">
+                    <Strong>CSR Number :</Strong><apex:outputText value="{!TxtAutoNumber}"/>
+                </td>
+            </tr>
+            
+        </div>  
+        
+    </table>
+    <div>
+        
+    </div>
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid black; margin-bottom: 0%; text-align: center;font-size:12px; ">
+        <tr>
+            <td style="width: 10%; border: 1px solid black; text-align: center; color: red;background-color: #f0f0f0;">S. No.</td>
+            <td style="width: 40%; border: 1px solid black; text-align: center; color: red;background-color: #f0f0f0;">Description</td>
+            <td style="width: 40%; border: 1px solid black; text-align: center; color: red;background-color: #f0f0f0;">Details</td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 1px solid black;">1</td>
+            <td style="width: 40%; border: 1px solid black;">UID</td>
+            <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.NSLNumber__c}"/></td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 1px solid black;">2</td>
+            <td style="width: 40%; border: 1px solid black;">Customer Name</td>
+            <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Potential_Name__c}"/></td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 1px solid black;">3</td>
+            <td style="width: 40%; border: 1px solid black;">Contact Person</td>
+            <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Contact_First_Name__c} {!leads.Name}"/></td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 1px solid black;">4</td>
+            <td style="width: 40%; border: 1px solid black;">Designation &amp; Department</td>
+            <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Designation__c}"/></td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 1px solid black;">5</td>
+            <td style="width: 40%; border: 1px solid black;">Calco Assigned Executive</td>
+            <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!ownerName}"/></td>
+        </tr>
+        
+        
+    </table>
+    <div style="margin-top:7px">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid black; margin-bottom: 0%; text-align: center;font-size:12px; ">
+            <tr>
+                <td colspan="3" style="width: 100%; border: 1px solid black; text-align: center; color: red;background-color: #f0f0f0;">PRODUCT DESCRIPTION</td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;">1</td>
+                <td style="width: 40%; border: 1px solid black;">Application Description</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Application_Area__c}"/></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;">2</td>
+                <td style="width: 40%; border: 1px solid black;">Component Name</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Component_Name__c}"/></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;">3</td>
+                <td style="width: 40%; border: 1px solid black;">Part Weight (Gms)</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Part_Weight_gms__c}"/></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;">4</td>
+                <td style="width: 40%; border: 1px solid black;">Part Thickness Min (mm)</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Part_Thickness_Min_mm__c}"/></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;">5</td>
+                <td style="width: 40%; border: 1px solid black;">Part Thickness Max (mm)</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Part_Thickness_Max_mm__c}"/></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;">6</td>
+                <td style="width: 40%; border: 1px solid black;">Production Description &amp; Current Grade Code</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!leads.Production_Description__c} & {!leads.Current_Supplier_Grade__c} "/></td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-top:7px">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid black; margin-bottom: 0%; text-align: center;font-size:12px;">
+            <tr>
+                <td colspan="4" style="width: 100%; border: 1px solid black; text-align: center; color: red;background-color: #f0f0f0;">REQUIREMENTS</td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;color: red;">Yes</td>
+                <td style="width: 10%; border: 1px solid black;color: red;">No</td>
+                <td style="width: 30%; border: 1px solid black;color: red;">Description</td>
+                <td style="width: 50%; border: 1px solid black;color: red;">Details</td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesRegulatory, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoRegulatory,URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Regulatory Requirement</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Regulatory_Requirement__c !=null, leads.Regulatory_Requirement__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesCriticalMajor , URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoCriticalMajor, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Critical Parameters (Major)</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Major_Critical_Parameter__c !=null, leads.Major_Critical_Parameter__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesCriticalMinor, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoCriticalMinor, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 40%; border: 1px solid black;">Critical Parameters (Minor)</td>
+                <td style="width: 40%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Minor_Critical_Parameter__c !=null, leads.Minor_Critical_Parameter__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesFlammability && isYesSampleCollected, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoFlammability, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Flammability Requirement</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Flammability_Requirement__c!=null, leads.Flammability_Requirement__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesAethics && isYesSampleCollectionWeight, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoAethics, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Aesthetic Finishing</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF( leads.Aethics__c!=null, leads.Aethics__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesLaserMarking && isYesSampleQuantityNeeded, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoLaserMarking, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Laser Marking Requirement</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Laser_Marking__c !=null, leads.Laser_Marking__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesPadPrinting, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoPadPrinting, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Pad Printing Requirement</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Pad_Printing_Requirement__c !=null, leads.Pad_Printing_Requirement__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesWelding, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoWelding, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Welding Requirement</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Welding__c !=null, leads.Welding__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesFric, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoFric, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Friction Resistance</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Fric__c !=null, leads.Fric__c, '')}" /></td>
+            </tr>
+           
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesColor, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoColor, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Any Color Requirement</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Color__c !=null, leads.Color__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesMetal_Contaminated, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoMetal_Contaminated, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Metal Contamination (in percentage)</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Metal_Contaminated__c !=null, leads.Metal_Contaminated__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesBlankSpot, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoBlankSpot, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Black Spot (in ppm)</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Black_Spot__c !=null, leads.Black_Spot__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesExpectedAnnual, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoExpectedAnnual, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Expected Annual Requirement (Kgs)</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Expected_Annual_Volume_Kgs__c !=null, leads.Expected_Annual_Volume_Kgs__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesSampleCollected, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoSampleCollected, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Sample Collected</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Sample_Collected__c !=null, leads.Sample_Collected__c, '')}" /></td>
+            </tr>
+            <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesSampleCollectionWeight, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoSampleCollectionWeight, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Sample Collected Weight</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Sample_Collection_Weight__c !=null, leads.Sample_Collection_Weight__c, '')}" /></td>
+            </tr>
+             <tr>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isYesSampleQuantityNeeded, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 10%; border: 1px solid black;"><apex:image url="{!IF(isNoSampleQuantityNeeded, URLFOR($Resource.TickCheckbox), URLFOR($Resource.BlankTick))}" width="12" height="12" /></td>
+                <td style="width: 30%; border: 1px solid black;">Sample Quantity Needed (Kgs)</td>
+                <td style="width: 50%; border: 1px solid black;"><apex:outputText value="{!IF(leads.Sample_Quantity_Needed_Kgs__c !=null, leads.Sample_Quantity_Needed_Kgs__c, '')}" /></td>
+            </tr>
+        </table>
+    </div>
 
+    <div style="margin-top:10px">
+
+         <table style="width: 100%; border-collapse: collapse; border: 1px solid black; margin-bottom: 0%; text-align: center;font-size:12px;">
+            <tr>
+                <td colspan="4" style="width: 80%; border: 1px solid black;background-color: #f0f0f0;"><strong><i>For<apex:outputText value=" {!leads.Potential_Name__c}"/></i></strong></td>
+
+                <td colspan="1" style="width: 20%; border: 1px solid black;background-color: #f0f0f0;"><strong><i>For Calco Poly Technik Pvt. Ltd.</i></strong></td>
+            </tr>
+             <tr>
+                <td colspan="1" style="width: 20%; border: 1px solid black;">Team Member</td>
+                <td colspan="1" style="width: 30%; border: 1px solid black;">Contact Name</td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;">Contact No.</td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;">Designation</td>
+                <td colspan="1" style="width: 20%; border-right: 1px solid black;"></td>
+            </tr>
+             <tr>
+                <td colspan="1" style="width: 20%; border: 1px solid black;">1</td>
+                <td colspan="1" style="width: 30%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;"></td>  
+                <td colspan="1" style="width: 20%; border-right: 1px solid black;"></td>
+             </tr>
+             <tr>
+                <td colspan="1" style="width: 20%; border: 1px solid black;">2</td>
+                <td colspan="1" style="width: 30%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 20%; border-right: 1px solid black;font-size:9px;"><apex:outputText value="{!IF(ownerEmail !=null,ownerEmail, '')}" /></td>
+             </tr>
+             <tr>
+                <td colspan="1" style="width: 20%; border: 1px solid black;">3</td>
+                <td colspan="1" style="width: 30%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;"></td>
+                <td colspan="1" style="width: 15%; border: 1px solid black;"></td>  
+                 <td colspan="1" style="width:20%; border-right: 1px solid black; border-bottom: 1px solid black; "></td>
+             </tr>
+             <tr>
+                <td colspan="4"  style="width: 20%; border: 1px solid black;font-size:9px;">All information and data contained in this document are the exclusive property of Calco Poly Technik Pvt. Ltd. and may neither be used nor disclosed without its prior written consent.</td>
+                 <td colspan="1"  style="width: 20%; border: 1px solid black;">Authorized Signatory</td>
+             </tr>
+        </table>
+    
+    </div>
+</apex:page>
