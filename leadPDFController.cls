@@ -33,6 +33,11 @@ public class leadPDFController {
     public boolean isYesSampleQuantityNeeded {get; set;}
     public boolean isNoSampleCollectionWeight {get; set;}
     public boolean isYesSampleCollectionWeight {get; set;}
+    public boolean isNSampleRetention {get; set;}
+    public boolean isYesSampleRetention {get; set;}
+    
+    
+    
     public string ownerEmail {get;set;}
     public Integer currentYear {get;set;}
     public string TxtAutoNumber{get;set;}
@@ -52,7 +57,7 @@ public class leadPDFController {
                                   Current_Supplier_Grade__c,Regulatory_Requirement__c,Major_Critical_Parameter__c,Minor_Critical_Parameter__c,
                                   Flammability_Requirement__c,Aethics__c, Laser_Marking__c,Pad_Printing_Requirement__c,
                                   Welding__c,Fric__c,Color__c,Metal_Contaminated__c,Black_Spot__c,Expected_Annual_Volume_Kgs__c,
-                                  Sample_Collected__c,Sample_Collection_Weight__c,Sample_Quantity_Needed_Kgs__c FROM lead__c where Id=:leads.id];
+                                  Sample_Collected__c,Sample_Collection_Weight__c,Sample_Quantity_Needed_Kgs__c,Sample_Retention__c FROM lead__c where Id=:leads.id];
     	ownerName=leads.owner.name;
         ownerEmail=leads.owner.Email;
         currentYear = Date.today().year();
@@ -104,6 +109,11 @@ public class leadPDFController {
         isNoSampleCollectionWeight=!isYesSampleCollectionWeight;
     	isYesSampleQuantityNeeded=(leads.Sample_Quantity_Needed_Kgs__c != null && leads.Sample_Quantity_Needed_Kgs__c != 0);
         isNoSampleQuantityNeeded=!isYesSampleQuantityNeeded;
+
+        isYesMetal_Contaminated=(leads.Metal_Contaminated__c != null && leads.Metal_Contaminated__c.trim() != 'No');
+        isNoMetal_Contaminated=!isYesMetal_Contaminated;
+        isYesSampleRetention=(leads.Sample_Retention__c != null && leads.Sample_Retention__c.trim() != 'No');
+        isNoSampleRetention=!isYesSampleRetention;
     
     }
     
