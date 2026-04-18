@@ -1,0 +1,10 @@
+Salesfroce_Sandbox to VScode
+sf -version sf project generate --name myProject cd myProject
+
+sf org list
+
+PS C:\Users\akash> sf org list ┌──┬─────────┬───────┬────────────────────────────┬────────────────────┬───────────┐ │ │ Type │ Alias │ Username │ Org Id │ Status │ ├──┼─────────┼───────┼────────────────────────────┼────────────────────┼───────────┤ │ │ Sandbox │ │ varun.gupta@calco.in.akash │ 00De1000000nkhdEAA │ Connected │ └──┴─────────┴───────┴────────────────────────────┴────────────────────┴───────────┘
+
+Legend: 🌳=Default DevHub, 🍁=Default Org Use --all to see expired and deleted scratch orgs PS C:\Users\akash>
+
+sf org login web --instance-url https://test.salesforce.com
